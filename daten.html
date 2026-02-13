@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daten – Teilnehmerzahlen | 67 Megasport</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101d36;
+      --text:#eaf0ff;
+      --muted:#a8b3d6;
+      --line:rgba(255,255,255,.14);
+      --radius:16px;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(1200px 600px at 80% 15%, rgba(45,212,191,.25), transparent 55%),
+        var(--bg);
+      line-height:1.6;
+    }
+    .container{width:min(1100px, 92vw); margin:0 auto;}
+    header{padding:2.4rem 0 1.2rem; border-bottom:1px solid var(--line);}
+    .badge{
+      display:inline-block; padding:.35rem .6rem; border-radius:999px;
+      border:1px solid var(--line); color:var(--muted); font-size:.85rem;
+      background:rgba(255,255,255,.04); margin:0 0 .6rem 0;
+    }
+    h1{margin:.2rem 0 .6rem; font-size:clamp(2rem, 5vw, 2.6rem); line-height:1.1;}
+    h2{margin:0 0 .6rem; font-size:1.35rem}
+    .lead{color:var(--muted); max-width:65ch; margin:0 0 1rem;}
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:1.1rem;
+      box-shadow:var(--shadow);
+      margin:1.1rem 0;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:.7rem 1rem;
+      border-radius:12px;
+      border:1px solid var(--line);
+      color:var(--text);
+      font-weight:600;
+      background:rgba(255,255,255,.04);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .muted{color:var(--muted);}
+    .small{font-size:.9rem;}
+
+    .chart-wrap{
+      background:rgba(0,0,0,.12);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:1rem;
+      overflow:auto;
+    }
+    .bars{
+      display:grid;
+      gap:.55rem;
+      margin-top:1rem;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 110px 1fr 50px;
+      gap:.8rem;
+      align-items:center;
+    }
+    .bar{
+      height:16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:linear-gradient(90deg, rgba(124,92,255,.9), rgba(45,212,191,.5));
+      width:0%;
+      transition:width .9s ease;
+    }
+    .label{font-variant-numeric: tabular-nums;}
+    footer{
+      border-top:1px solid var(--line);
+      padding:1.2rem 0;
+      color:var(--muted);
+      margin-top:2rem;
+    }
+    .footer-row{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
+    footer a{color:var(--muted); text-decoration:none}
+    footer a:hover{color:var(--text)}
+
+    .disclaimer{
+      border-color:rgba(255,165,0,.35);
+      background:rgba(255,165,0,.06);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <p class="badge">Daten</p>
+      <h1>Teilnehmerzahlen</h1>
+      <p class="lead">
+        Übersicht der TeilnehmerInnen pro Training (gemäss Anhang).
+        Diagramm ist korrekt beschriftet und sauber dargestellt.
+      </p>
+      <a class="btn" href="index.html">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Diagramm: Teilnehmerzahlen pro Datum</h2>
+      <p class="muted small">Y-Achse: Anzahl Personen • X-Achse: Datum</p>
+
+      <div class="chart-wrap" aria-label="Balkendiagramm Teilnehmerzahlen">
+        <div class="bars" id="bars"></div>
+        <p class="muted small" style="margin:.9rem 0 0;">
+          Daten: 26.01.2026 (6), 29.01.2026 (9), 02.02.2026 (7), 05.02.2026 (5), 09.02.2026 (10), 12.02.2026 (3)
+        </p>
+      </div>
+    </section>
+
+    <section class="card disclaimer">
+      <h2>Disclaimer</h2>
+      <p>
+        Diese Datenseite ist Teil eines <strong>Schulprojekts</strong>. Die Zahlen stammen aus dem Aufgaben-Anhang.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <p>© 67 Megasport (Schulprojekt)</p>
+      <p><a href="index.html">Startseite</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Daten aus dem Anhang
+    const data = [
+      { date: "26.01.2026", value: 6 },
+      { date: "29.01.2026", value: 9 },
+      { date: "02.02.2026", value: 7 },
+      { date: "05.02.2026", value: 5 },
+      { date: "09.02.2026", value: 10 },
+      { date: "12.02.2026", value: 3 }
+    ];
+
+    // Für Balkenbreite (max = 10)
+    const max = Math.max(...data.map(d => d.value));
+    const bars = document.getElementById("bars");
+
+    data.forEach(d => {
+      const row = document.createElement("div");
+      row.className = "row";
+
+      const left = document.createElement("div");
+      left.className = "label";
+      left.textContent = d.date;
+
+      const midWrap = document.createElement("div");
+      midWrap.style.border = "1px solid rgba(255,255,255,.14)";
+      midWrap.style.borderRadius = "999px";
+      midWrap.style.background = "rgba(255,255,255,.04)";
+      midWrap.style.padding = "2px";
+
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      bar.style.width = "0%";
+      midWrap.appendChild(bar);
+
+      const right = document.createElement("div");
+      right.className = "label";
+      right.textContent = d.value;
+
+      row.appendChild(left);
+      row.appendChild(midWrap);
+      row.appendChild(right);
+      bars.appendChild(row);
+
+      // Animation nach dem Einfügen
+      requestAnimationFrame(() => {
+        bar.style.width = `${(d.value / max) * 100}%`;
+      });
+    });
+  </script>
+</body>
+</html>

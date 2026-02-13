@@ -2,116 +2,247 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>67 Megasport – Outdoor HIIT mit Lara B.</title>
-  <meta name="description" content="Outdoor HIIT Training in Liestal – kurze, intensive Einheiten mit Lara B." />
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101d36;
+      --text:#eaf0ff;
+      --muted:#a8b3d6;
+      --line:rgba(255,255,255,.14);
+      --accent:#7c5cff;
+      --accent2:#2dd4bf;
+      --radius:16px;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(1200px 600px at 80% 15%, rgba(45,212,191,.25), transparent 55%),
+        var(--bg);
+      line-height:1.6;
+    }
+
+    .container{width:min(1100px, 92vw); margin:0 auto;}
+    header{padding:3rem 0 1.3rem; border-bottom:1px solid var(--line);}
+    .badge{
+      display:inline-block; padding:.35rem .6rem; border-radius:999px;
+      border:1px solid var(--line); color:var(--muted); font-size:.85rem;
+      background:rgba(255,255,255,.04); margin:0 0 .6rem 0;
+    }
+    h1{margin:.2rem 0 .6rem; font-size:clamp(2rem, 5vw, 3rem); line-height:1.1;}
+    h2{margin:0 0 .6rem; font-size:1.35rem}
+    .lead{color:var(--muted); max-width:65ch; margin:0 0 1rem;}
+    nav{
+      position:sticky; top:0; z-index:5;
+      backdrop-filter: blur(12px);
+      background:rgba(11,18,32,.72);
+      border-bottom:1px solid var(--line);
+    }
+    nav .row{
+      display:flex; gap:.8rem; flex-wrap:wrap; align-items:center;
+      padding:.8rem 0;
+    }
+    nav a{
+      color:var(--muted); text-decoration:none;
+      padding:.35rem .55rem; border-radius:10px;
+    }
+    nav a:hover{color:var(--text); background:rgba(255,255,255,.06);}
+    nav .cta{margin-left:auto; border:1px solid var(--line);}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:1.1rem;
+      align-items:start;
+      margin-top:1.2rem;
+    }
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:1.1rem;
+      box-shadow:var(--shadow);
+      margin:1.1rem 0;
+    }
+    .hero{
+      overflow:hidden;
+      padding:0;
+    }
+    .hero img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      display:block;
+      border-radius:var(--radius);
+    }
+    .muted{color:var(--muted);}
+    .small{font-size:.9rem;}
+    ul{margin:.4rem 0 0; padding-left:1.2rem;}
+    li{margin:.35rem 0}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.12);
+    }
+    th, td{
+      padding:.85rem;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      vertical-align:top;
+    }
+    th{background:rgba(255,255,255,.06)}
+    tr:hover td{background:rgba(255,255,255,.04)}
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:.9rem;
+    }
+    .gallery img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--line);
+      display:block;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:.75rem 1rem;
+      border-radius:12px;
+      border:1px solid var(--line);
+      color:var(--text);
+      font-weight:600;
+      background:rgba(255,255,255,.04);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      border:1px solid rgba(124,92,255,.6);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(45,212,191,.35));
+    }
+    .callout{
+      margin-top:1rem;
+      padding:.85rem 1rem;
+      border-left:4px solid var(--accent2);
+      background:rgba(45,212,191,.08);
+      border-radius:12px;
+    }
+    footer{
+      border-top:1px solid var(--line);
+      padding:1.2rem 0;
+      color:var(--muted);
+      margin-top:2rem;
+    }
+    .footer-row{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
+    footer a{color:var(--muted); text-decoration:none}
+    footer a:hover{color:var(--text)}
+
+    .disclaimer{
+      border-color:rgba(255,165,0,.35);
+      background:rgba(255,165,0,.06);
+    }
+
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      nav .cta{margin-left:0}
+    }
+  </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div>
-        <p class="badge">Outdoor HIIT • Liestal</p>
-        <h1>67 Megasport</h1>
-        <p class="lead">Kurze, intensive Einheiten draussen – bei jedem Wetter. Mit Lara B.</p>
+  <header>
+    <div class="container">
+      <p class="badge">Outdoor HIIT • Liestal</p>
+      <h1>67 Megasport</h1>
+      <p class="lead">
+        Outdoor HIIT Training mit Lara B. – kurze, intensive Einheiten draussen,
+        bei jedem Wetter. Fokus: saubere Technik vor Geschwindigkeit.
+      </p>
 
-        <div class="header-actions">
-          <a class="btn primary" href="#angebot">Trainingszeiten ansehen</a>
-          <a class="btn ghost" href="daten.html">Teilnehmerzahlen (Daten)</a>
+      <div class="grid">
+        <div class="card">
+          <h2>Über mich</h2>
+          <p>
+            Ich bin <strong>Lara B.</strong>, 25 Jahre alt und studiere Sportwissenschaften.
+            Bewegung ist für mich keine Pflicht, sondern ein Gefühl von Freiheit.
+            Neben dem Studium leite ich Outdoor-HIIT-Kurse in Liestal.
+          </p>
+
+          <h2 id="philo">Trainingsphilosophie</h2>
+          <ul>
+            <li>Draussen trainieren – bei jedem Wetter</li>
+            <li>Kurze, intensive HIIT-Einheiten</li>
+            <li>Saubere Technik vor Geschwindigkeit</li>
+            <li>Low Equipment, High Impact</li>
+          </ul>
+
+          <p class="muted small" style="margin-top:1rem;">
+            Hinweis: Diese Website ist ein Schulprojekt (siehe Disclaimer unten).
+          </p>
         </div>
-      </div>
 
-      <div class="hero-card">
-        <img
-          src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"
-          alt="Gruppe trainiert draussen"
-        />
-        <p class="img-credit">Bildquelle: Unsplash (KI-frei, frei verwendbar)</p>
+        <div class="card hero">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="Outdoor Training" />
+          <p class="muted small" style="margin:.7rem 1rem 1rem;">
+            Bildquelle: Unsplash (frei verwendbar)
+          </p>
+        </div>
       </div>
     </div>
   </header>
 
-  <nav class="site-nav">
-    <div class="container nav-row">
-      <a href="#about">Über mich</a>
-      <a href="#philo">Trainingsphilosophie</a>
+  <nav>
+    <div class="container row">
       <a href="#angebot">Angebot</a>
+      <a href="#bilder">Bilder</a>
       <a href="#kontakt">Kontakt</a>
-      <a class="nav-cta" href="daten.html">Daten</a>
+      <a class="cta" href="daten.html">Daten / Teilnehmerzahlen</a>
     </div>
   </nav>
 
-  <main class="container main">
-
-    <section id="about" class="card">
-      <h2>Über mich</h2>
-      <p>
-        Ich bin <strong>Lara B.</strong>, 25 Jahre alt und studiere Sportwissenschaften.
-        Bewegung bedeutet für mich Freiheit: draussen aktiv sein, Grenzen testen und dabei
-        immer mit einem Lächeln. Neben dem Studium gebe ich Outdoor-HIIT-Kurse in Liestal.
-      </p>
-      <p class="muted">
-        Hinweis: Diese Seite ist Teil eines Schulprojekts (siehe Disclaimer unten).
-      </p>
-    </section>
-
-    <section id="philo" class="grid-2">
-      <div class="card">
-        <h2>Trainingsphilosophie</h2>
-        <ul class="checklist">
-          <li>Draussen trainieren – bei jedem Wetter</li>
-          <li>Kurze, intensive HIIT-Einheiten</li>
-          <li>Saubere Technik vor Geschwindigkeit</li>
-          <li>Low Equipment, High Impact</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Warum HIIT?</h2>
-        <p>
-          HIIT ist ideal, wenn du wenig Zeit hast, aber viel Wirkung willst.
-          Wir kombinieren Kondition, Kraft und Koordination – so, dass es für Einsteiger
-          und Fortgeschrittene anpassbar ist.
-        </p>
-        <p class="muted">
-          Fokus: Technik, sichere Ausführung und Motivation in der Gruppe.
-        </p>
-      </div>
-    </section>
-
+  <main class="container">
     <section id="angebot" class="card">
-      <div class="section-head">
-        <h2>Angebot & Trainingszeiten</h2>
-        <p class="muted">Übersichtlich als Tabelle (laut Auftrag).</p>
-      </div>
+      <h2>Angebot & Trainingszeiten</h2>
+      <p class="muted">Trainingszeiten und Ort übersichtlich als Tabelle.</p>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Training</th>
-              <th>Tag</th>
-              <th>Uhrzeit</th>
-              <th>Ort</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Outdoor HIIT</td>
-              <td>Montag</td>
-              <td>18:30</td>
-              <td>Primarschule Gestadeck, Liestal</td>
-            </tr>
-            <tr>
-              <td>Outdoor HIIT</td>
-              <td>Donnerstag</td>
-              <td>19:00</td>
-              <td>Primarschule Gestadeck, Liestal</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Training</th>
+            <th>Tag</th>
+            <th>Uhrzeit</th>
+            <th>Ort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Outdoor HIIT</td>
+            <td>Montag</td>
+            <td>18:30</td>
+            <td>Primarschule Gestadeck, Liestal</td>
+          </tr>
+          <tr>
+            <td>Outdoor HIIT</td>
+            <td>Donnerstag</td>
+            <td>19:00</td>
+            <td>Primarschule Gestadeck, Liestal</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="callout">
         <strong>Treffpunkt:</strong> Pausenplatz der Primarschule Gestadeck (Liestal).
@@ -119,65 +250,45 @@
       </div>
     </section>
 
-    <section class="card">
+    <section id="bilder" class="card">
       <h2>Impressionen</h2>
-      <p class="muted">Mindestens 3 Bilder + Bildquelle (laut Auftrag).</p>
 
       <div class="gallery">
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80"
-            alt="Fitness Training"
-          />
-          <figcaption>Bildquelle: Unsplash</figcaption>
-        </figure>
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=1200&q=80"
-            alt="Outdoor Workout"
-          />
-          <figcaption>Bildquelle: Unsplash</figcaption>
-        </figure>
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80"
-            alt="Sportliche Gruppe"
-          />
-          <figcaption>Bildquelle: Unsplash</figcaption>
-        </figure>
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80" alt="Fitness Training" />
+        <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=1200&q=80" alt="Workout draussen" />
+        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80" alt="Sportliche Gruppe" />
       </div>
+
+      <p class="muted small" style="margin-top:.8rem;">
+        Bildquelle: Unsplash (frei verwendbare Fotos)
+      </p>
     </section>
 
     <section id="kontakt" class="card">
       <h2>Kontakt</h2>
       <p>Fragen oder Interesse? Schreib mir eine Nachricht.</p>
 
-      <!-- Mailadresse muss NICHT funktionieren laut Auftrag -->
-      <a class="btn primary" href="mailto:lara.megasport@example.com">
-        Mail senden
-      </a>
+      <!-- muss nicht funktionieren laut Auftrag -->
+      <a class="btn primary" href="mailto:lara.megasport@example.com">Mail senden</a>
 
-      <p class="muted small">
-        (Mailadresse ist ein Platzhalter – Schulprojekt.)
+      <p class="muted small" style="margin-top:.6rem;">
+        (Platzhalter-Mailadresse – Schulprojekt.)
       </p>
     </section>
 
     <section class="card disclaimer">
       <h2>Disclaimer</h2>
       <p>
-        <strong>Wichtig:</strong> Diese Website ist ein <strong>Schulprojekt</strong> im Rahmen der Projektarbeit
-        und stellt keine echte offizielle Webseite/Firma dar. Alle Angaben dienen Übungszwecken.
+        <strong>Wichtig:</strong> Diese Website ist ein <strong>Schulprojekt</strong> und keine echte offizielle
+        Webseite/Firma. Alle Inhalte dienen Übungszwecken.
       </p>
     </section>
-
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container footer-row">
       <p>© 67 Megasport (Schulprojekt)</p>
-      <a href="daten.html">Zur Datenseite</a>
+      <p><a href="daten.html">Zur Datenseite</a></p>
     </div>
   </footer>
 </body>
